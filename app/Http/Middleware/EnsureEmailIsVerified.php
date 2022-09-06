@@ -16,7 +16,6 @@ class EnsureEmailIsVerified
      */
     public function handle(Request $request, Closure $next)
     {
-        dd($request->user());
         //三个判断
         // 1. 如果用户已经登陆
         // 2. 并且还未认证Email
