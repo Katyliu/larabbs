@@ -43,7 +43,7 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
 //再次确认密码
-Route::get('password/confirm', 'Auth\ConfirmPasswordController@showConfirm')->name('password.confirm');
+Route::get('password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
 Route::post('password/confirm', 'Auth\ConfirmPasswordController@confirm');
 
 //Email 认证相关路由
@@ -51,4 +51,5 @@ Route::get('email/verity', 'Auth\VerificationController@show')->name('verificati
 Route::get('email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify');
 Route::post('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 
+Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);
 
