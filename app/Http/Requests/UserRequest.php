@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Support\Facades\Auth;
 class UserRequest extends FormRequest
 {
     /**
@@ -24,7 +24,7 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|between:3,25|regex:/^[A-Za-z0-9\-\_\x7f-\xff]+$/|unique:users,name,'. \Auth::id(),
+            'name' => 'required|between:3,25|regex:/^[A-Za-z0-9\-\_\x7f-\xff]+$/|unique:users,name,'. Auth::id(),
             'email' => 'required|email',
             'introduction' => 'max:80',
         ];
