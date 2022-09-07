@@ -11,7 +11,7 @@
                 <div class="flex-grow-1 ms-2">
 
                     <div class="mt-0 mb-1">
-                        <a  href="{{ route('topics.show', [$topic->id]) }}" title="{{ $topic->title }}">
+                        <a class="text-decoration-none" href="{{ route('topics.show', [$topic->id]) }}" title="{{ $topic->title }}">
                             {{ $topic->title }}
                         </a>
                         <a class=" float-end"  href="{{ route('topics.show', [$topic->id]) }}">
@@ -21,13 +21,13 @@
 
                     <small class="media-body meta text-secondary">
 
-                        <a class="text-secondary" href="{{ route('categories.show', $topic->category_id) }}" title="{{ $topic->category->name }}">
+                        <a class="text-secondary text-decoration-none" href="{{ route('categories.show', $topic->category_id) }}" title="{{ $topic->category->name }}">
                             <i class="far fa-folder"></i>
                             {{ $topic->category->name }}
                         </a>
 
                         <span> • </span>
-                        <a class="text-secondary" href="{{ route('users.show', [$topic->user_id]) }}" title="{{ $topic->user->name }}">
+                        <a class="text-secondary text-decoration-none" href="{{ route('users.show', [$topic->user_id]) }}" title="{{ $topic->user->name }}">
                             <i class="far fa-user"></i>
                             {{ $topic->user->name }}
                         </a>
