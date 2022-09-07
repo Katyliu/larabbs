@@ -79,13 +79,16 @@ body {
 
 
   /* Topic Index Page */
-.topics-index-page {
+.topics-index-page .categories-show-page {
   .topic-list {
     .nav>li>a {
       position: relative;
       display: block;
       padding: 5px 14px;
       font-size: 0.9em;
+      a:link {
+        text-decoration: none;
+      }
     }
 
     a {
@@ -93,12 +96,15 @@ body {
       text-decoration: none;
     }
 
+
+
     .meta {
       font-size: 0.9em;
       color: #b3b3b3;
 
       a {
         color: #b3b3b3;
+        text-decoration: none;
       }
     }
 
