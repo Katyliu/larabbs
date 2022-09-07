@@ -11,7 +11,11 @@ use League\CommonMark\Extension\CommonMark\Node\Inline\Strong;
 
 class UsersController extends Controller
 {
-    //
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['show']);
+    }
+
     public function show(User $user)
     {
         return view('users.show', compact('user'));
@@ -19,29 +23,28 @@ class UsersController extends Controller
 
     public function edit(User $user)
     {
+        $this->authorize('update', $user);
         return view('users.edit', compact('user'));
     }
 
     public function update(UserRequest $request, ImageUploadHandler $uploader, User $user)
     {
-        $old_path = public_path().str_ireplace(config('app.url'), '', $user->avatar);
+        $this->authorize('update', $user);
         $data = $request->all();
         if($request->avatar){
-            if($user->avatar)
-            {
-
-            }
             $result = $uploader->save($request->avatar, 'avatars', $user->id, 416);
             if($result){
                 $data['avatar'] = $result['path'];
             }
+            //删除旧的图片
+            $old_path = public_path().str_ireplace(config('app.url'), '', $user->avatar);
+            if (File::exists($old_path)) {
+                File::delete($old_path);
+            }
         }
 
         $user->update($data);
-        //删除旧的图片
-        if (File::exists($old_path)) {
-            File::delete($old_path);
-        }
+
         return redirect()->route('users.show', $user->id)->with('success', '个人资料更新成功！');
     }
 
