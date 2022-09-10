@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-
+Route::get('test', 'TestController@test')->name('test');
 //需要前往路由的服务提供者类中设置命名空间
 Route::get('/', 'PagesController@root')->name('root');
 
